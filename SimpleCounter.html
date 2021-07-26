@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .container {
+  position: relative;
+  height: 100vh;
+}
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.2rem;
+  font-size: 2rem;
+    margin-top: -5rem;
+    color: rgba(28, 2, 53, 0.911);
+}
+.count {
+    margin-top: -1rem;
+  font-size: 6rem;
+  text-align: center;
+}
+.btn-div {
+  display: flex;
+  flex-direction: column;
+}
+.btn-div button {
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+  background-color: inherit;
+  outline: none;
+  border: 2px solid rgb(25, 25, 37);
+  letter-spacing: 0.2rem;
+  transition: 0.3s linear;
+  border-radius: 0.4rem;
+  margin: 1rem 0.8rem;
+}
+
+.btn-div button:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+@media screen and (max-width:500px){
+    html{
+        font-size: 0.5rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="title">
+                <h1>Counter</h1>
+            </div>
+            <h1 id="value" class="count">0</h1>
+            <div class="btn-div">
+                <button class='btn decrease'>DECREASE</button>
+                <button class='btn reset'>RESET</button>
+                <button class='btn increase'>INCREASE</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    const count = document.querySelector('.count');
+const decrement = document.querySelector('.decrease');
+const reset = document.querySelector('.reset');
+const increment = document.querySelector('.increase');
+
+const btns = [decrement, reset, increment]
+
+let counter = 0;
+
+btns.forEach(btn => {
+    btn.addEventListener('click', (e)=> {
+        const styles = e.currentTarget.classList;
+        if(styles.contains('decrease')){
+            counter--;
+        }
+        else if(styles.contains('reset')){
+            counter = 0;
+        }
+        else{
+            counter++;
+        }
+        if (counter > 0) {
+            count.style.color = "green";
+          }
+          if (counter < 0) {
+            count.style.color = "red";
+          }
+          if (counter === 0) {
+            count.style.color = "#222";
+          }
+        count.textContent = counter;
+    })
+})
+    </script>
+</body>
+
+</html>
